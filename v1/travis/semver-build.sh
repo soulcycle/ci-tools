@@ -14,6 +14,8 @@ echo "Building for semver"
 
 # Create docker tag(s)
 docker tag $ECR_ARN:$COMMIT_HASH $ECR_ARN:$TRAVIS_TAG
+docker tag $ECR_ARN:$COMMIT_HASH $ECR_ARN:stable
 
 # Push tag(s) to image repository
 docker push $ECR_ARN:$TRAVIS_TAG
+docker push $ECR_ARN:stable
