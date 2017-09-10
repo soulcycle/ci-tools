@@ -8,6 +8,12 @@
 
 set -e
 
+# Re-own python install directory
+sudo chown -R $(whoami) /usr/local
+
+# Upgrade pip
+pip install --upgrade pip
+
 # Install pip dependencies
 pip install awscli
 
