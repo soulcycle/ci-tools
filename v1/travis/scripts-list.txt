@@ -1,5 +1,6 @@
 https://soulcycle.github.io/ci-tools/v1/travis/ecr-login.sh
 https://soulcycle.github.io/ci-tools/v1/travis/env.sh
+https://soulcycle.github.io/ci-tools/v1/travis/utils.sh
 https://soulcycle.github.io/ci-tools/v1/travis/master-build.sh
 https://soulcycle.github.io/ci-tools/v1/travis/pr-build.sh
 https://soulcycle.github.io/ci-tools/v1/travis/semver-build.sh
