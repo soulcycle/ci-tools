@@ -18,7 +18,6 @@ DOCKER_REPO=$ECR_ARN
 # Read any overrides that came in from cli
 readArgOverrides
 
-
 if [ -z "$DOCKER_REPO" ]; then
 	echo "No Docker Repository Specified"
 	exit 1
