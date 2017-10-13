@@ -18,7 +18,7 @@ echo "Building for master"
 # By default use $ECR_ARN
 DOCKER_REPO=$ECR_ARN
 # Read any overrides that came in from cli
-readArgOverrides
+readArgOverrides $@
 
 if [ -z "$DOCKER_REPO" ]; then
 	echo "No Docker Repository Specified"
