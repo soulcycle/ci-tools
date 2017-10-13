@@ -8,14 +8,17 @@
 # NOTE: Also assumes `ecr-login` has been run in order to successfully log in to ECR
 
 set -e
-source utils.sh
+
+DIR=$(dirname $0)
+
+source $DIR/utils.sh
 
 echo "Building for master"
 
 # By default use $ECR_ARN
 DOCKER_REPO=$ECR_ARN
 # Read any overrides that came in from cli
-readArgOverrides
+readArgOverrides $@
 
 if [ -z "$DOCKER_REPO" ]; then
 	echo "No Docker Repository Specified"
