@@ -9,6 +9,7 @@
 # NOTE: Also assumes `ecr-login` has been run in order to successfully log in to ECR
 
 set -e
+source utils.sh
 
 echo "Building for PR"
 
