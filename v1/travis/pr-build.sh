@@ -11,26 +11,12 @@
 set -e
 
 echo "Building for PR"
-DOCKER_REPO=$ECR_ARN
-POSITIONAL=()
-while [[ $# -gt 0 ]]
-do
-key="$1"
 
-case $key in
-    -r|--repo)
-    DOCKER_REPO="$2"
-    shift # past argument
-    shift # past value
-    ;;    
-    *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-esac
-done
-set -- "${POSITIONAL[@]}"
-echo $DOCKER_REPO;
+# By default use $ECR_ARN
+DOCKER_REPO=$ECR_ARN
+# Read any overrides that came in from cli
+readArgOverrides
+
 if [ -z "$DOCKER_REPO" ]; then
 	echo "No Docker Repository Specified"
 	exit 1

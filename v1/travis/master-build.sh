@@ -11,26 +11,11 @@ set -e
 
 echo "Building for master"
 
+# By default use $ECR_ARN
 DOCKER_REPO=$ECR_ARN
-POSITIONAL=()
-while [[ $# -gt 0 ]]
-do
-key="$1"
+# Read any overrides that came in from cli
+readArgOverrides
 
-case $key in
-    -r|--repo)
-    DOCKER_REPO="$2"
-    shift # past argument
-    shift # past value
-    ;;    
-    *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-esac
-done
-set -- "${POSITIONAL[@]}"
-echo $DOCKER_REPO;
 if [ -z "$DOCKER_REPO" ]; then
 	echo "No Docker Repository Specified"
 	exit 1

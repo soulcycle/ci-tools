@@ -9,29 +9,16 @@
 # NOTE: Also assumes `ecr-login` has been run in order to successfully log in to ECR
 
 set -e
+source utils.sh
 
 echo "Building for semver"
 
+# By default use $ECR_ARN
 DOCKER_REPO=$ECR_ARN
-POSITIONAL=()
-while [[ $# -gt 0 ]]
-do
-key="$1"
+# Read any overrides that came in from cli
+readArgOverrides
 
-case $key in
-    -r|--repo)
-    DOCKER_REPO="$2"
-    shift # past argument
-    shift # past value
-    ;;    
-    *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-esac
-done
-set -- "${POSITIONAL[@]}"
-echo $DOCKER_REPO;
+
 if [ -z "$DOCKER_REPO" ]; then
 	echo "No Docker Repository Specified"
 	exit 1
