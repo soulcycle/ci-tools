@@ -18,4 +18,4 @@ pip install --upgrade pip
 pip install awscli
 
 # Login to ECR
-eval $(aws ecr get-login)
+eval $(aws ecr get-login --no-include-email)
