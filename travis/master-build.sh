@@ -28,8 +28,8 @@ fi
 echo "Tagging and pushing to $DOCKER_REPO"
 
 # Create docker tag(s)
-docker tag $DOCKER_REPO:$COMMIT_HASH $ECR_ARN:master
-docker tag $DOCKER_REPO:$COMMIT_HASH $ECR_ARN:latest
+docker tag $DOCKER_REPO:$COMMIT_HASH $DOCKER_REPO:master
+docker tag $DOCKER_REPO:$COMMIT_HASH $DOCKER_REPO:latest
 
 # Push tag(s) to image repository
 docker push $DOCKER_REPO:master
