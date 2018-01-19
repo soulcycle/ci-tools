@@ -3,9 +3,9 @@
 #
 # NOTE: Assumes the following env vars are defined within the running environment
 #   - COMMIT_HASH - The first 7 characters of the travis commit hash
-#   - DOCKER_TAG_BASE - The full ARN of the ECR repository (including respository name)
+#   - DOCKER_TAG_BASE - The full ARN of the GCR repository (including respository name)
 #
-# NOTE: Also assumes `gcr-login` has been run in order to successfully log in to ECR
+# NOTE: Also assumes `gcr-login` has been run in order to successfully log in to GCR
 
 set -e
 
