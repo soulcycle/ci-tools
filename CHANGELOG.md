@@ -1,5 +1,15 @@
 # Change Log
 
+## [2.0.0](https://github.com/soulcycle/ci-tools/tree/2.0.0) (01-19-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/e2.0.0...2.0.0)
+
+**Merged pull requests:**
+
+- Update CI-tools to support GCR pushing [\#11](https://github.com/soulcycle/ci-tools/pull/11) ([marksost](https://github.com/marksost))
+
+## [e2.0.0](https://github.com/soulcycle/ci-tools/tree/e2.0.0) (01-19-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.0.4...e2.0.0)
+
 ## [l1.0.4](https://github.com/soulcycle/ci-tools/tree/l1.0.4) (01-18-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.0.3...l1.0.4)
 
