@@ -1,5 +1,8 @@
 # Change Log
 
+## [l1.0.4](https://github.com/soulcycle/ci-tools/tree/l1.0.4) (01-18-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.0.3...l1.0.4)
+
 ## [l1.0.3](https://github.com/soulcycle/ci-tools/tree/l1.0.3) (01-18-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.0.2...l1.0.3)
 
