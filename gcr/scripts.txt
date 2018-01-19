@@ -1,0 +1,5 @@
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/ensure-gcloud-installed.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/env.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/gcr-login.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/push-build.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/utils.sh
