@@ -1,5 +1,8 @@
 # Change Log
 
+## [2.0.1](https://github.com/soulcycle/ci-tools/tree/2.0.1) (01-19-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.0.0...2.0.1)
+
 ## [2.0.0](https://github.com/soulcycle/ci-tools/tree/2.0.0) (01-19-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/e2.0.0...2.0.0)
 
