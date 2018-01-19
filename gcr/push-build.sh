@@ -21,6 +21,6 @@ echo_yellow "Tagging and pushing a single git push to $DOCKER_TAG_BASE..."
 docker tag $DOCKER_TAG_BASE:$COMMIT_HASH $DOCKER_TAG_BASE:$COMMIT_HASH
 
 # Push tag(s) to image repository
-docker push $DOCKER_REPO:$COMMIT_HASH
+gcloud docker -- push $DOCKER_REPO:$COMMIT_HASH
 
 echo_green "Pushing commit hash image $COMMIT_HASH to $DOCKER_TAG_BASE."
