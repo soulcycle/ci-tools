@@ -1,5 +1,5 @@
 #!/bin/bash
-# Pushes two tagged images to GCR: master and latest
+# Pushes a new semver-tagged image to GCR: X.X.X (major/minor/patch)
 #
 # NOTE: Assumes the following env vars are defined within the running environment
 #   - COMMIT_HASH - The first 7 characters of the travis commit hash
