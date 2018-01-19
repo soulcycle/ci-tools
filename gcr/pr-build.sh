@@ -7,7 +7,7 @@
 #
 # NOTE: Also assumes `gcr-login` has been run in order to successfully log in to GCR
 
-# set -e
+set -e
 
 # Set TOOL_ROOT, the location of the directory this script is housed in
 readonly TOOL_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
