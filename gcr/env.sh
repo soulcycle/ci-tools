@@ -15,4 +15,4 @@ set -e
 export COMMIT_HASH=${TRAVIS_COMMIT:0:7}
 export CLOUDSDK_CORE_DISABLE_PROMPTS=1
 export CLOUDSDK_COMPUTE_ZONE=${GCLOUD_ZONE:-us-east1-c}
-export DOCKER_TAG_BASE=gcr.io/${GCLOUD_PROJECTID:-podium-prod}/$APP_NAME
+export DOCKER_TAG_BASE=gcr.io/${GCLOUD_PROJECTID:-podium-production}/$APP_NAME
