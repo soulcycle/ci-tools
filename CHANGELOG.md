@@ -1,5 +1,15 @@
 # Change Log
 
+## [2.1.0](https://github.com/soulcycle/ci-tools/tree/2.1.0) (01-21-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.0.2...2.1.0)
+
+**Merged pull requests:**
+
+- Edge [\#12](https://github.com/soulcycle/ci-tools/pull/12) ([marksost](https://github.com/marksost))
+
+## [2.0.2](https://github.com/soulcycle/ci-tools/tree/2.0.2) (01-19-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.0.1...2.0.2)
+
 ## [2.0.1](https://github.com/soulcycle/ci-tools/tree/2.0.1) (01-19-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.0.0...2.0.1)
 
