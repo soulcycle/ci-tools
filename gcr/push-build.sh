@@ -4,7 +4,7 @@
 # NOTE: Assumes the following env vars are defined within the running environment
 #   - COMMIT_HASH - The first 7 characters of the travis commit hash
 #   - DOCKER_TAG_BASE - The full URL of the GCR repository (including respository name) to push to
-#                       NOTE: This ca be overridden via the -b flag. See usage for more information.
+#                       NOTE: This can be overridden via the -b flag. See usage for more information.
 #
 # NOTE: Also assumes `gcr-login` has been run in order to successfully log in to GCR
 
@@ -22,10 +22,10 @@ main() {
   echo_yellow "Tagging and pushing a single git push to ${DOCKER_BASE}..."
 
   # Create docker tag(s)
-  # docker tag $DOCKER_TAG_BASE:$COMMIT_HASH $DOCKER_TAG_BASE:$COMMIT_HASH
+  docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:$COMMIT_HASH
 
   # Push tag(s) to image repository
-  # gcloud docker -- push $DOCKER_TAG_BASE:$COMMIT_HASH > /dev/null
+  gcloud docker -- push $DOCKER_BASE:$COMMIT_HASH > /dev/null
 
   echo_green "Pushed commit hash image ${COMMIT_HASH} to ${DOCKER_BASE}."
 }
