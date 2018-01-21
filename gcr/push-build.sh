@@ -3,7 +3,8 @@
 #
 # NOTE: Assumes the following env vars are defined within the running environment
 #   - COMMIT_HASH - The first 7 characters of the travis commit hash
-#   - DOCKER_TAG_BASE - The full ARN of the GCR repository (including respository name)
+#   - DOCKER_TAG_BASE - The full URL of the GCR repository (including respository name) to push to
+#                       NOTE: This can be overridden via the -b flag. See usage for more information.
 #
 # NOTE: Also assumes `gcr-login` has been run in order to successfully log in to GCR
 
@@ -13,12 +14,49 @@ readonly TOOL_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 # Include shell helpers
 source $TOOL_ROOT/utils.sh
 
-echo_yellow "Tagging and pushing a single git push to $DOCKER_TAG_BASE..."
+# Setup input variables
+DOCKER_BASE="${DOCKER_TAG_BASE}"
 
-# Create docker tag(s)
-docker tag $DOCKER_TAG_BASE:$COMMIT_HASH $DOCKER_TAG_BASE:$COMMIT_HASH
+# Main functionality of the script
+main() {
+  echo_yellow "Tagging and pushing a single git push to ${DOCKER_BASE}..."
 
-# Push tag(s) to image repository
-gcloud docker -- push $DOCKER_TAG_BASE:$COMMIT_HASH > /dev/null
+  # Create docker tag(s)
+  docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:$COMMIT_HASH
 
-echo_green "Pushed commit hash image $COMMIT_HASH to $DOCKER_TAG_BASE."
+  # Push tag(s) to image repository
+  gcloud docker -- push $DOCKER_BASE:$COMMIT_HASH > /dev/null
+
+  echo_green "Pushed commit hash image ${COMMIT_HASH} to ${DOCKER_BASE}."
+}
+
+# Function that outputs usage information
+usage() {
+  cat <<EOF
+
+Usage: $TOOL_ROOT/$(basename $0) <options>
+
+Pushes a tagged image to GCR where the tag is the git hash of the push
+
+Options:
+  -b     The full URL of the GCR repository (including respository name) to push to
+         NOTE: Use this flag to override the default behavior,
+         which uses the DOCKER_TAG_BASE environment variable
+  -h     Print this message and quit
+
+EOF
+  exit 0
+}
+
+# Parse input options
+while getopts ":b:h-:" opt; do
+  case "$opt" in
+    b) DOCKER_BASE=$OPTARG;;
+    h) usage;;
+    \?) echo_red "Invalid option: -$OPTARG." && usage;;
+    :) die "Option -$OPTARG requires an argument.";;
+  esac
+done
+
+# Execute main functionality
+main

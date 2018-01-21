@@ -1,9 +1,10 @@
 #!/bin/bash
-# Pushes two tagged images to GCR: master and latest
+# Pushes two tagged images to GCR: master & latest
 #
 # NOTE: Assumes the following env vars are defined within the running environment
 #   - COMMIT_HASH - The first 7 characters of the travis commit hash
-#   - DOCKER_TAG_BASE - The full ARN of the GCR repository (including respository name)
+#   - DOCKER_TAG_BASE - The full URL of the GCR repository (including respository name) to push to
+#                       NOTE: This can be overridden via the -b flag. See usage for more information.
 #
 # NOTE: Also assumes `gcr-login` has been run in order to successfully log in to GCR
 
@@ -13,14 +14,51 @@ readonly TOOL_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 # Include shell helpers
 source $TOOL_ROOT/utils.sh
 
-echo_yellow "Tagging and pushing a master push to $DOCKER_TAG_BASE..."
+# Setup input variables
+DOCKER_BASE="${DOCKER_TAG_BASE}"
 
-# Create docker tag(s)
-docker tag $DOCKER_TAG_BASE:$COMMIT_HASH $DOCKER_TAG_BASE:master
-docker tag $DOCKER_TAG_BASE:$COMMIT_HASH $DOCKER_TAG_BASE:latest
+# Main functionality of the script
+main() {
+  echo_yellow "Tagging and pushing a master push to ${DOCKER_BASE}..."
 
-# Push tag(s) to image repository
-gcloud docker -- push $DOCKER_TAG_BASE:master > /dev/null
-gcloud docker -- push $DOCKER_TAG_BASE:latest > /dev/null
+  # Create docker tag(s)
+  docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:master
+  docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:latest
 
-echo_green "Pushed commit hash image for master to $DOCKER_TAG_BASE."
+  # Push tag(s) to image repository
+  gcloud docker -- push $DOCKER_BASE:master > /dev/null
+  gcloud docker -- push $DOCKER_BASE:latest > /dev/null
+
+  echo_green "Pushed commit hash image for master to ${DOCKER_BASE}."
+}
+
+# Function that outputs usage information
+usage() {
+  cat <<EOF
+
+Usage: $TOOL_ROOT/$(basename $0) <options>
+
+Pushes two tagged images to GCR: master & latest
+
+Options:
+  -b     The full URL of the GCR repository (including respository name) to push to
+         NOTE: Use this flag to override the default behavior,
+         which uses the DOCKER_TAG_BASE environment variable
+  -h     Print this message and quit
+
+EOF
+  exit 0
+}
+
+# Parse input options
+while getopts ":b:h-:" opt; do
+  case "$opt" in
+    b) DOCKER_BASE=$OPTARG;;
+    h) usage;;
+    \?) echo_red "Invalid option: -$OPTARG." && usage;;
+    :) die "Option -$OPTARG requires an argument.";;
+  esac
+done
+
+# Execute main functionality
+main
