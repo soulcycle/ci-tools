@@ -18,47 +18,55 @@ node_js:
 # This will force Travis to run in legacy mode to allow sudo
 sudo: required
 
-services:
-  - docker
+# Store the Google Cloud sdk in Travis cache for future builds so we are not
+# installing it on each build
+cache:
+  - "$HOME/google-cloud-sdk/"
 
 # Add any environment variables the build may require. Take care to not expose sensitive key/secret combinations
 env:
   global:
     - APP_NAME=podium-w77
+    - CI_TOOLS_BASE=https://raw.githubusercontent.com/soulcycle/ci-tools
+    - CI_TOOLS_VERSION=$(curl $CI_TOOLS_BASE/master/versions/stable.txt)
 
 # In this section we'll scaffold and install any pre requisites for the build. We're downloading
 # our ci-tools repo so that we can run our build and push scripts pr, master and semvar branches. 
 # Other uses would be to install a binary needed, composer for php would be a good example
 before_install:
-  - wget -P /tmp/travis/ -i https://soulcycle.github.io/ci-tools/v1/travis/scripts-list.txt
-  - chmod -R +x /tmp/travis/*.sh
-  - source /tmp/travis/env.sh
-  - /tmp/travis/ecr-login.sh
+  - curl $CI_TOOLS_BASE/$CI_TOOLS_VERSION/gcr/scripts.txt | sed "s/{%version%}/$CI_TOOLS_VERSION/" | wget -P /tmp/build/ -i -
+  - chmod -R +x /tmp/build/*.sh
+  - source /tmp/build/env.sh
+  - /tmp/build/ensure-gcloud-installed.sh
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - /tmp/build/gcr-login.sh
 
 # Build our docker image and tag it with the commit hash
 install:
-  - docker build -t $ECR_ARN:$COMMIT_HASH .
+  - docker build -t $DOCKER_TAG_BASE:$COMMIT_HASH .
 
 # Run tests on the image we just built
 script:
-  - docker run $ECR_ARN:$COMMIT_HASH npm test
+  - docker run $DOCKER_TAG_BASE:$COMMIT_HASH npm test
 
 # Check if we're currently building a pull request and run the pr-build script if so
 # run the pr-build script which will tag the image with the pull request number
 # from github and push it to our Docker registry
 after_success: >-
   if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
-    /tmp/travis/pr-build.sh
+    /tmp/build/pr-build.sh
+  else
+    /tmp/build/push-build.sh
   fi;
 
 # Deploy using the appropriate script for master or semvar builds
 deploy:
   - provider: script
-    script: /tmp/travis/master-build.sh
+    script: /tmp/build/master-build.sh
     on:
       branch: master
   - provider: script
-    script: /tmp/travis/semver-build.sh
+    script: /tmp/build/semver-build.sh
     on:
       tags: true
       condition: $TRAVIS_TAG =~ [0-9]+\.[0-9]+\.[0-9]+
