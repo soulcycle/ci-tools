@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.2.0](https://github.com/soulcycle/ci-tools/tree/2.2.0) (02-03-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.1.0...2.2.0)
+
+**Merged pull requests:**
+
+- PE-897 - Added travis.example.yml and updated the README [\#13](https://github.com/soulcycle/ci-tools/pull/13) ([bronxct1](https://github.com/bronxct1))
+
 ## [2.1.0](https://github.com/soulcycle/ci-tools/tree/2.1.0) (01-21-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.0.2...2.1.0)
 
