@@ -1,0 +1,78 @@
+# This file is meant to provide a breakdown of common actions we would like to live in
+# the travis.yml file. The ci-tools repo exists to aggrigate common scripts that are
+# needed to build, tag and push an image to a Docker registry to be deployed in the
+# Podium platform. The travis.yml from w77th is the basis for this example, with
+# additions to highlight alternate usage of features. Please read through the
+# Travis documentation to familiarize yourself with the format of this file
+# https://docs.travis-ci.com/
+
+# Define target language
+language: node_js
+
+# Define versions to build. This can accept multiple versions which will start a build for each
+node_js:
+  - "8.6.0"
+  - "8.9.4" # Test against latest LTS
+  - "9.5.0" # Test against latest release
+
+# This will force Travis to run in legacy mode to allow sudo
+sudo: required
+
+# Store the Google Cloud sdk in Travis cache for future builds so we are not
+# installing it on each build
+cache:
+  - "$HOME/google-cloud-sdk/"
+
+# Add any environment variables the build may require. Take care to not expose sensitive key/secret combinations
+env:
+  global:
+    - APP_NAME=podium-w77
+    - CI_TOOLS_BASE=https://raw.githubusercontent.com/soulcycle/ci-tools
+    - CI_TOOLS_VERSION=$(curl $CI_TOOLS_BASE/master/versions/stable.txt)
+
+# In this section we'll scaffold and install any pre requisites for the build. We're downloading
+# our ci-tools repo so that we can run our build and push scripts pr, master and semvar branches. 
+# Other uses would be to install a binary needed, composer for php would be a good example
+before_install:
+  - curl $CI_TOOLS_BASE/$CI_TOOLS_VERSION/gcr/scripts.txt | sed "s/{%version%}/$CI_TOOLS_VERSION/" | wget -P /tmp/build/ -i -
+  - chmod -R +x /tmp/build/*.sh
+  - source /tmp/build/env.sh
+  - /tmp/build/ensure-gcloud-installed.sh
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - /tmp/build/gcr-login.sh
+
+# Build our docker image and tag it with the commit hash
+install:
+  - docker build -t $DOCKER_TAG_BASE:$COMMIT_HASH .
+
+# Run tests on the image we just built
+script:
+  - docker run $DOCKER_TAG_BASE:$COMMIT_HASH npm test
+
+# Check if we're currently building a pull request and run the pr-build script if so
+# run the pr-build script which will tag the image with the pull request number
+# from github and push it to our Docker registry
+after_success: >-
+  if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+    /tmp/build/pr-build.sh
+  else
+    /tmp/build/push-build.sh
+  fi;
+
+# Deploy using the appropriate script for master or semvar builds
+deploy:
+  - provider: script
+    script: /tmp/build/master-build.sh
+    on:
+      branch: master
+  - provider: script
+    script: /tmp/build/semver-build.sh
+    on:
+      tags: true
+      condition: $TRAVIS_TAG =~ [0-9]+\.[0-9]+\.[0-9]+
+
+# Send a slack notification to the proper channel
+notifications:
+  slack:
+    rooms:
+      secure: aL0v/x/HlTx4m/M+YKDv77FkM5O5O6UNCI25AxPFMmoaPBOOIfVlhTyUus5mlwhkYPvbGnxVrNJ9BEbtwdFodhNYrctHVf3xtKboWx2E56KSdJ9GokLPJqQvRUDyhOKSCAXxM8zpdAEhBBF6Ncq4M1OO41CEknudtEdezKelSnCK3vfb2HWveMdWhN2f4sSybVSmRR2GNL4Q7e9EkYwyIkI07huMF+b9wlyqmkEa3OhPcT3XeEM6ooA0D9bP/RVpoi3Ysk5gGRgC5SWTwc6jintaU/bbhg4RXLWH8Y5z+F/+jFiVZ2TKjwPK3vxDBYC1e8rMhruGsjnZeoLOrBrXswzO9wwi8rlcwsEwQVGiJPm2Vaa+cq8IesCaDPQDipzs62aifOT2uBP0RAu/7QawRRZdmX/fryg6PezAGIG47ogpPdUhA8e/LLxdM/pzECi9R02NvxRKfSSbc56rkZ13pWL7/VyxyPXDWGo9C0f96LIu0BGjjvmEeSYlEnwSfC+kQFqYHimR7Ycm8WO/wcQSY1NU3KSijUOLgw/0A/lL+1AkzUkyDDAZm0tLiE9fZxHj99rKatfRoP4pCqwFSiuj5P6DHS9/PAgsxYFb/8RU+i+hPihWlgjAtihSqkUBT+XuKX4ZCGqcNjSi+0iIJrzvlSiVRCs/NtOMM0DPA3HCvgM=
