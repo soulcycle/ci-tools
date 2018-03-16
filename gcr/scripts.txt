@@ -7,3 +7,4 @@ https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/push-build.
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/semver-build.sh
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/dev-build.sh
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/utils.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/dev-build.sh
