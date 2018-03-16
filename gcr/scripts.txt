@@ -5,4 +5,5 @@ https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/master-buil
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/pr-build.sh
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/push-build.sh
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/semver-build.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/dev-build.sh
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/gcr/utils.sh

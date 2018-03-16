@@ -1,7 +1,7 @@
 # Change Log
 
-## [2.3.0](https://github.com/soulcycle/ci-tools/tree/2.3.0) (03-16-2018)
-[Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.1.0...2.3.0)
+## [2.3.1](https://github.com/soulcycle/ci-tools/tree/2.3.1) (03-16-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.1.0...2.3.1)
 
 **Merged pull requests:**
 
