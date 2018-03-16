@@ -1,6 +1,16 @@
 # Change Log
 
-## [2.2.0](https://github.com/soulcycle/ci-tools/tree/2.2.0) (02-03-2018)
+## [2.3.0](https://github.com/soulcycle/ci-tools/tree/2.3.0) (03-16-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.1.0...2.3.0)
+
+**Merged pull requests:**
+
+- PE-1698 Adds dev-build.sh job for development branch [\#14](https://github.com/soulcycle/ci-tools/pull/14) ([mauhftw](https://github.com/mauhftw))
+
+## [l1.1.0](https://github.com/soulcycle/ci-tools/tree/l1.1.0) (02-09-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.2.0...l1.1.0)
+
+## [2.2.0](https://github.com/soulcycle/ci-tools/tree/2.2.0) (02-04-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.1.0...2.2.0)
 
 **Merged pull requests:**
