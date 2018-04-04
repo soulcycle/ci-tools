@@ -1,10 +1,5 @@
 #!/bin/bash
 # Decrypts firebase keys that are inside utils/firebase-keys directory
-#
-# NOTE: This causes an error when running in Travis
-#       DO NOT USE 'set -e' in this script, otherwise all hell breaks loose,
-#       but, yaknow, without outputing the actual issue to the Travis log...
-
 
 # Set TOOL_ROOT, the location of the directory this script is housed in
 readonly TOOL_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
@@ -20,7 +15,7 @@ ansible-vault decrypt $TRAVIS_BUILD_DIR/utils/firebase-keys/* --vault-password-f
 
 # Check if decryption was successful
 if [[ $? -ne 0 ]] ; then
-	echo_red "Decryption has failed"
+  echo_red "Decryption has failed"
 fi
 
 # Remove temporal key
