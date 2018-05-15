@@ -1,7 +1,17 @@
 # Change Log
 
+## [2.4.0](https://github.com/soulcycle/ci-tools/tree/2.4.0) (05-15-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.3.1...2.4.0)
+
+**Merged pull requests:**
+
+- PE-2341 - Update ci-tools to support GCR and Docker 18.03+ [\#17](https://github.com/soulcycle/ci-tools/pull/17) ([marksost](https://github.com/marksost))
+
 ## [2.3.1](https://github.com/soulcycle/ci-tools/tree/2.3.1) (03-16-2018)
-[Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.1.0...2.3.1)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.3.0...2.3.1)
+
+## [2.3.0](https://github.com/soulcycle/ci-tools/tree/2.3.0) (03-16-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/l1.1.0...2.3.0)
 
 **Merged pull requests:**
 
