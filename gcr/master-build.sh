@@ -26,8 +26,10 @@ main() {
   docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:latest
 
   # Push tag(s) to image repository
-  gcloud docker -- push $DOCKER_BASE:master > /dev/null
-  gcloud docker -- push $DOCKER_BASE:latest > /dev/null
+  # gcloud docker -- push $DOCKER_BASE:master > /dev/null
+  # gcloud docker -- push $DOCKER_BASE:latest > /dev/null
+  docker push $DOCKER_BASE:master
+  docker push $DOCKER_BASE:latest
 
   echo_green "Pushed commit hash image for master to ${DOCKER_BASE}."
 }

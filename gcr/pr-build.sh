@@ -25,7 +25,8 @@ main() {
   docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:PR-$TRAVIS_PULL_REQUEST
 
   # Push tag(s) to image repository
-  gcloud docker -- push $DOCKER_BASE:PR-$TRAVIS_PULL_REQUEST > /dev/null
+  # gcloud docker -- push $DOCKER_BASE:PR-$TRAVIS_PULL_REQUEST > /dev/null
+  docker push $DOCKER_BASE:PR-$TRAVIS_PULL_REQUEST
 
   echo_green "Pushed commit hash image PR-${TRAVIS_PULL_REQUEST} to ${DOCKER_BASE}."
 }
