@@ -26,8 +26,6 @@ main() {
   docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:stable
 
   # Push tag(s) to image repository
-  # gcloud docker -- push $DOCKER_BASE:$TRAVIS_TAG > /dev/null
-  # gcloud docker -- push $DOCKER_BASE:stable > /dev/null
   docker push $DOCKER_BASE:$TRAVIS_TAG
   docker push $DOCKER_BASE:stable
 
