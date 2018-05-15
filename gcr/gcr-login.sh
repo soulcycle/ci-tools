@@ -4,7 +4,6 @@
 # NOTE: Assumes the following env vars are defined within the running environment
 #   - GCLOUD_KEY - A base64-encoded service account .json private key,
 #                  obtained via the service account creation process
-#   - GCLOUD_EMAIL - The email address that the service account was assigned
 
 set -e
 
@@ -18,7 +17,10 @@ echo_yellow "Logging in to gcloud with service account..."
 
 # Decode key and store temporarily, then try to activate it
 echo $GCLOUD_KEY | base64 --decode > /tmp/sa.json
-gcloud auth activate-service-account $GCLOUD_EMAIL --key-file /tmp/sa.json
+
+# Login with Docker
+# https://cloud.google.com/container-registry/docs/advanced-authentication#json_key_file
+docker login -u _json_key --password-stdin https://gcr.io < /tmp/sa.json
 
 echo_green "Successfully logged in to gcloud with service account."
 

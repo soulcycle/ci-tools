@@ -25,7 +25,7 @@ main() {
   docker tag $DOCKER_BASE:$COMMIT_HASH $DOCKER_BASE:$COMMIT_HASH
 
   # Push tag(s) to image repository
-  gcloud docker -- push $DOCKER_BASE:$COMMIT_HASH > /dev/null
+  docker push $DOCKER_BASE:$COMMIT_HASH
 
   echo_green "Pushed commit hash image ${COMMIT_HASH} to ${DOCKER_BASE}."
 }
