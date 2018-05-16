@@ -32,9 +32,13 @@ main() {
   echo_green "Pushed commit hash image PR-${TRAVIS_PULL_REQUEST} to ${DOCKER_BASE}."
   
   if [ -z "$HARNESS_WEBHOOK" ]; then
+    echo_yellow "Letting Harness.io know a PR build happened..."
+
     curl -X POST -H 'Content-Type: application/json' \
     --url "${HARNESS_WEBHOOK}" \
     -d '{"application":"${HARNESS_APPLICATION_ID}","artifacts":[{"service":"${HARNESS_SERVICE}","buildNumber":"PR-${TRAVIS_PULL_REQUEST}"}]}'
+
+    echo_green "Harness.io informed of PR build."
   fi
 }
 
