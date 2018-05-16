@@ -5,7 +5,9 @@
 #   - COMMIT_HASH - The first 7 characters of the travis commit hash
 #   - DOCKER_TAG_BASE - The full URL of the GCR repository (including respository name) to push to
 #                       NOTE: This can be overridden via the -b flag. See usage for more information.
-#
+#   - HARNESS_WEBHOOK - The full webhook URL to trigger a deploy in Harness
+#   - HARNESS_APPLICATION_ID - Harness application ID
+#   - HARNESS_SERVICE - Refers to a service that exists inside Harness. Example "W77"
 # NOTE: Also assumes `gcr-login` has been run in order to successfully log in to GCR
 
 # Set TOOL_ROOT, the location of the directory this script is housed in
@@ -29,8 +31,10 @@ main() {
 
   echo_green "Pushed commit hash image PR-${TRAVIS_PULL_REQUEST} to ${DOCKER_BASE}."
   
-  if [ -z "$HARNESS_WEBHOOK" ] then
-    curl -X POST -H 'content-type: application/json' --url $HARNESS_WEBHOOK -d '{"application":"${HARNESS_APPLICATION_ID}","artifacts":[{"service":"${HARNESS_SERVICE}","buildNumber":"PR-${TRAVIS_PULL_REQUEST}"}]}'
+  if [ -z "$HARNESS_WEBHOOK" ]; then
+    curl -X POST -H 'Content-Type: application/json' \
+    --url "${HARNESS_WEBHOOK}" \
+    -d '{"application":"${HARNESS_APPLICATION_ID}","artifacts":[{"service":"${HARNESS_SERVICE}","buildNumber":"PR-${TRAVIS_PULL_REQUEST}"}]}'
   fi
 }
 
