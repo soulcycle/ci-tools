@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.5.0](https://github.com/soulcycle/ci-tools/tree/2.5.0) (05-16-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.4.0...2.5.0)
+
+**Merged pull requests:**
+
+- Add harness webhook after PR is pushed [\#18](https://github.com/soulcycle/ci-tools/pull/18) ([bronxct1](https://github.com/bronxct1))
+
 ## [2.4.0](https://github.com/soulcycle/ci-tools/tree/2.4.0) (05-15-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.3.1...2.4.0)
 
