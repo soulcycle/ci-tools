@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.5.1](https://github.com/soulcycle/ci-tools/tree/2.5.1) (05-17-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.5.0...2.5.1)
+
+**Merged pull requests:**
+
+- Fixed Harness webhook conditional [\#19](https://github.com/soulcycle/ci-tools/pull/19) ([bronxct1](https://github.com/bronxct1))
+
 ## [2.5.0](https://github.com/soulcycle/ci-tools/tree/2.5.0) (05-16-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.4.0...2.5.0)
 
