@@ -36,9 +36,9 @@ main() {
 
     curl -X POST -H 'Content-Type: application/json' \
     --url "${HARNESS_WEBHOOK}" \
-    -d '{"application":"${HARNESS_APPLICATION_ID}","artifacts":[{"service":"${HARNESS_SERVICE}","buildNumber":"PR-${TRAVIS_PULL_REQUEST}"}]}'
+    -d "{\"application\":\"${HARNESS_APPLICATION_ID}\",\"artifacts\":[{\"service\":\"${HARNESS_SERVICE}\",\"buildNumber\":\"PR-${TRAVIS_PULL_REQUEST}\"}]}"
 
-    echo_green "Harness.io informed of PR build."
+    echo_green "\n Harness.io informed of PR build."
   fi
 }
 
