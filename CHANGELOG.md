@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.5.2](https://github.com/soulcycle/ci-tools/tree/2.5.2) (05-17-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.5.1...2.5.2)
+
+**Merged pull requests:**
+
+- Properly escaped payload variables for harness curl [\#20](https://github.com/soulcycle/ci-tools/pull/20) ([bronxct1](https://github.com/bronxct1))
+
 ## [2.5.1](https://github.com/soulcycle/ci-tools/tree/2.5.1) (05-17-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.5.0...2.5.1)
 

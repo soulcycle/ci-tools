@@ -4,7 +4,7 @@ Continuous Integration tooling for SoulCycle source code repositories.
 
 ---
 
-[![Current Release](https://img.shields.io/badge/release-2.5.1-1eb0fc.svg)](https://github.com/soulcycle/ci-tools/releases/tag/2.5.1)
+[![Current Release](https://img.shields.io/badge/release-2.5.2-1eb0fc.svg)](https://github.com/soulcycle/ci-tools/releases/tag/2.5.2)
 
 ## Usage
 
