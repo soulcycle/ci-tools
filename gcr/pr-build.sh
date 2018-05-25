@@ -32,6 +32,12 @@ main() {
   echo_green "Pushed commit hash image PR-${TRAVIS_PULL_REQUEST} to ${DOCKER_BASE}."
   
   if [ -n "$HARNESS_WEBHOOK" ]; then
+    if [ -n "$WEBHOOK_DELAY_TIME" ]; then
+      echo_yellow "Sleeping for ${WEBHOOK_DELAY_TIME} seconds before notifying Harness.io"
+      
+      sleep $WEBHOOK_DELAY_TIME
+    fi
+
     echo_yellow "Letting Harness.io know a PR build happened..."
 
     curl -X POST -H 'Content-Type: application/json' \
