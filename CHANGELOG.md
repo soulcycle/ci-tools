@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.6.0](https://github.com/soulcycle/ci-tools/tree/2.6.0) (05-29-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.5.2...2.6.0)
+
+**Merged pull requests:**
+
+- Add a delay before harness.io webhook [\#21](https://github.com/soulcycle/ci-tools/pull/21) ([bronxct1](https://github.com/bronxct1))
+
 ## [2.5.2](https://github.com/soulcycle/ci-tools/tree/2.5.2) (05-17-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.5.1...2.5.2)
 
