@@ -30,6 +30,16 @@ main() {
   docker push $DOCKER_BASE:latest
 
   echo_green "Pushed commit hash image for master to ${DOCKER_BASE}."
+
+  if [ -n "$HARNESS_WEBHOOK_MASTER" ]; then
+    echo_yellow "Letting Harness.io know a master build happened..."
+
+    curl -X POST -H 'Content-Type: application/json' \
+    --url "${HARNESS_WEBHOOK_MASTER}" \
+    -d "{\"application\":\"${HARNESS_APPLICATION_ID}\",\"artifacts\":[{\"service\":\"${HARNESS_SERVICE}\",\"buildNumber\":\"master\"}]}"
+
+    echo_green "\n Harness.io informed of master build."
+  fi  
 }
 
 # Function that outputs usage information
