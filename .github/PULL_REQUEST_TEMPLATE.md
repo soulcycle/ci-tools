@@ -13,5 +13,3 @@
 ### QA Notes
 
 <Replace this with any additional information necessary to aid QA in testing the changes>
-
-<See https://soulcycle.atlassian.net/wiki/spaces/DC/pages/527794186/Pull+Request+Description+Details>
