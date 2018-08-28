@@ -15,7 +15,7 @@ sudo chown -R $(whoami) /usr/local
 pip install --upgrade pip
 
 # Install pip dependencies
-pip install awscli
+pip install awscli --ignore-installed urllib3
 
 # Login to ECR
 eval $(aws ecr get-login --no-include-email)
