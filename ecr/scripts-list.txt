@@ -1,6 +1,6 @@
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/travis/ecr-login.sh
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/travis/env.sh
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/travis/utils.sh
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/travis/master-build.sh
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/travis/pr-build.sh
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/travis/semver-build.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/ecr/ecr-login.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/ecr/env.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/ecr/utils.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/ecr/master-build.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/ecr/pr-build.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/ecr/semver-build.sh
