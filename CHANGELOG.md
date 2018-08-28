@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.8.0](https://github.com/soulcycle/ci-tools/tree/2.8.0) (08-28-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.7.0...2.8.0)
+
+**Merged pull requests:**
+
+- PE-4834 - Fixes failing ECR builds [\#24](https://github.com/soulcycle/ci-tools/pull/24) ([marksost](https://github.com/marksost))
+- Remove external link from PULL\_REQUEST\_TEMPLATE.md [\#23](https://github.com/soulcycle/ci-tools/pull/23) ([jroman00](https://github.com/jroman00))
+
 ## [2.7.0](https://github.com/soulcycle/ci-tools/tree/2.7.0) (06-04-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.6.0...2.7.0)
 
