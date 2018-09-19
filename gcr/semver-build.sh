@@ -30,6 +30,16 @@ main() {
   docker push $DOCKER_BASE:stable
 
   echo_green "Pushed commit hash image for a semver tag to ${DOCKER_BASE}."
+
+  if [ -n "$HARNESS_WEBHOOK_SEMVER" ]; then
+    echo_yellow "Letting Harness.io know a semver build happened..."
+
+    curl -X POST -H 'Content-Type: application/json' \
+    --url "${HARNESS_WEBHOOK_SEMVER}" \
+    -d "{\"application\":\"${HARNESS_APPLICATION_ID}\",\"artifacts\":[{\"service\":\"${HARNESS_SERVICE}\",\"buildNumber\":\"${TRAVIS_TAG}\"}]}"
+
+    echo_green "\n Harness.io informed of semver build."
+  fi
 }
 
 # Function that outputs usage information
