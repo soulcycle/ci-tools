@@ -1,5 +1,15 @@
 # Change Log
 
+## [2.9.0](https://github.com/soulcycle/ci-tools/tree/2.9.0) (09-19-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.8.1...2.9.0)
+
+**Merged pull requests:**
+
+- PE-5139 - Adds webhook for semver builds [\#25](https://github.com/soulcycle/ci-tools/pull/25) ([bronxct1](https://github.com/bronxct1))
+
+## [2.8.1](https://github.com/soulcycle/ci-tools/tree/2.8.1) (09-07-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.8.0...2.8.1)
+
 ## [2.8.0](https://github.com/soulcycle/ci-tools/tree/2.8.0) (08-28-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.7.0...2.8.0)
 
