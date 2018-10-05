@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.10.0](https://github.com/soulcycle/ci-tools/tree/2.10.0) (10-05-2018)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.9.0...2.10.0)
+
+**Merged pull requests:**
+
+- Send Harness webhook with latest instead of master tag for QA builds [\#26](https://github.com/soulcycle/ci-tools/pull/26) ([bronxct1](https://github.com/bronxct1))
+
 ## [2.9.0](https://github.com/soulcycle/ci-tools/tree/2.9.0) (09-19-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.8.1...2.9.0)
 
