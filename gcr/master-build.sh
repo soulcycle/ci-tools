@@ -36,10 +36,10 @@ main() {
 
     curl -X POST -H 'Content-Type: application/json' \
     --url "${HARNESS_WEBHOOK_MASTER}" \
-    -d "{\"application\":\"${HARNESS_APPLICATION_ID}\",\"artifacts\":[{\"service\":\"${HARNESS_SERVICE}\",\"buildNumber\":\"master\"}]}"
+    -d "{\"application\":\"${HARNESS_APPLICATION_ID}\",\"artifacts\":[{\"service\":\"${HARNESS_SERVICE}\",\"buildNumber\":\"latest\"}]}"
 
     echo_green "\n Harness.io informed of master build."
-  fi  
+  fi
 }
 
 # Function that outputs usage information
