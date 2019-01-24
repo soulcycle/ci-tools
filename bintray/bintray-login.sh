@@ -12,7 +12,7 @@ set -e
 readonly TOOL_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
 # Include shell helpers
-source $TOOL_ROOT/utils.sh
+source gcr/utils.sh
 
 echo_yellow "Logging in to bintray with an api key..."
 
