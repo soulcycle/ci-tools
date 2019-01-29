@@ -12,7 +12,8 @@ set -e
 readonly TOOL_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
 # Include shell helpers
-source gcr/utils.sh
+# In travis, all the scripts end up in /tmp/build
+source utils.sh
 
 echo_yellow "Logging in to bintray with an api key..."
 
