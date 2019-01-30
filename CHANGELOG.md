@@ -1,5 +1,15 @@
 # Change Log
 
+## [2.11.0](https://github.com/soulcycle/ci-tools/tree/2.11.0) (01-30-2019)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.10.0...2.11.0)
+
+**Merged pull requests:**
+
+- using toolpath [\#30](https://github.com/soulcycle/ci-tools/pull/30) ([amendozasoul](https://github.com/amendozasoul))
+- Bintray path fix [\#29](https://github.com/soulcycle/ci-tools/pull/29) ([amendozasoul](https://github.com/amendozasoul))
+- Adding scripts file to bintray [\#28](https://github.com/soulcycle/ci-tools/pull/28) ([amendozasoul](https://github.com/amendozasoul))
+- Adding bintray login and utils.sh [\#27](https://github.com/soulcycle/ci-tools/pull/27) ([amendozasoul](https://github.com/amendozasoul))
+
 ## [2.10.0](https://github.com/soulcycle/ci-tools/tree/2.10.0) (10-05-2018)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.9.0...2.10.0)
 
