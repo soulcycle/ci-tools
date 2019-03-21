@@ -13,10 +13,13 @@ eom
 cd /home/secrets
 
 echo "Finding secret files..."
+echo "Using vault password file: $ANSIBLE_VAULT_PASSWORD_FILE"
+
 secrets=$(find . -type f -regex '.*/configs/.*.secrets.yml')
 failure_count=0
 for file in $secrets; do
     echo "[PENDING] - Testing decryption on $file"
+    
     cat $file | ansible-vault decrypt --vault-password-file=$ANSIBLE_VAULT_PASSWORD_FILE 1> /dev/null
     if [ "$?" != "0" ]; then
         echo -e "[FAIL] - Can't decrypt the secrets.yml file for:\n\t$file"
