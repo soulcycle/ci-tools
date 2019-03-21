@@ -15,6 +15,9 @@ cd /home/secrets
 echo "Finding secret files..."
 echo "Using vault password file: $ANSIBLE_VAULT_PASSWORD_FILE"
 
+echo "DEBUG: Vault Password Contents:"
+cat ANSIBLE_VAULT_PASSWORD_FILE
+
 secrets=$(find . -type f -regex '.*/configs/.*.secrets.yml')
 failure_count=0
 for file in $secrets; do
