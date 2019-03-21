@@ -1,0 +1,2 @@
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/secret-validator.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/vault-secrets.sh
