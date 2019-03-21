@@ -20,6 +20,13 @@ failure_count=0
 for file in $secrets; do
     echo "[PENDING] - Testing decryption on $file"
     
+    # Is the file NOT encrypted?
+    if [[ $(cat $file | grep "ANSIBLE" | wc -l) -ne "1" ]]; then
+        echo "[FATAL] - File ${file} isn't encrypted!!"
+        failure_count=$((failure_count + 1))
+    fi
+    
+    echo "File appears to be encrypted. Attempting to decrypt now..."
     cat $file | ansible-vault decrypt --vault-password-file=$ANSIBLE_VAULT_PASSWORD_FILE 1> /dev/null
     if [ "$?" != "0" ]; then
         echo -e "[FAIL] - Can't decrypt the secrets.yml file for:\n\t$file"
