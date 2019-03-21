@@ -13,7 +13,7 @@ eom
 cd /home/secrets
 
 echo "Finding secret files..."
-echo "Using vault password file: $ANSIBLE_VAULT_PASSWORD_FILE"
+# echo "Using vault password file: $ANSIBLE_VAULT_PASSWORD_FILE"
 
 secrets=$(find . -type f -regex '.*/configs/.*.secrets.yml')
 failure_count=0
