@@ -22,9 +22,9 @@ docker run --entrypoint /bin/bash -it \
     -e ANSIBLE_VAULT_PASSWORD_FILE=${VAULT_PWD_FILE_PATH} \
     -v ${TRAVIS_BUILD_DIR}/vault.log:${VAULT_PWD_FILE_PATH} \
     -v ${TRAVIS_BUILD_DIR}/provisioning/k8s/:/home/secrets \
-    -v ${TRAVIS_BUILD_DIR}/test/vault-secrets.sh:/home/secrets/vault-secrets.sh \
-    gcr.io/podium-production/ansible-vault:latest /home/secrets/vault-secrets.sh
-    $TRAVIS_BUILD_DIR/ci-tools/misc/scripts/decrypt-keys.sh
+    -v /tmp/build/misc/vault-secrets.sh:/home/secrets/vault-secrets.sh \
+        gcr.io/podium-production/ansible-vault:latest /home/secrets/vault-secrets.sh
+        
 if [ $? != 0 ]; then
     echo "Secret validation process exited with an error."
     rm vault.log
