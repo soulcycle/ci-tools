@@ -7,19 +7,13 @@
 #   - VAULT_PWD_FILE_PATH - Path to the Vault password file that's mounted into the ansible-vault 
 #                           utility container
 
-# Set TOOL_ROOT, the location of the directory this script is housed in
-readonly TOOL_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
-
-# Include shell helpers
-source $TOOL_ROOT/utils.sh
-
 # Temporarily provision vault key file
-echo_yellow "Building temporary secrets file."
+echo "Building temporary secrets file."
 touch vault.log && chmod 640 vault.log
 echo "${POPS_ANSIBLE_PASSWORD}" > $TRAVIS_BUILD_DIR/vault.log
 
 # Pull down the latest image
-echo_yellow "Pulling latest ansible-vault utility container image... "
+echo "Pulling latest ansible-vault utility container image... "
 docker pull gcr.io/podium-production/ansible-vault:latest
 
 echo "Running Pops secret validation ... "
