@@ -28,7 +28,7 @@ for file in $secrets; do
 
     echo "File appears to be encrypted. Attempting to decrypt now..."
     cp $file $file.tmp
-    ansible-vault decrypt $file.tmp --vault-password-file=$ANSIBLE_VAULT_PASSWORD_FILE
+    ansible-vault decrypt $file.tmp --vault-password-file=$TRAVIS_BUILD_DIR/vault.log
     if [ "$?" != "0" ]; then
         echo -e "[FAIL] - Can't decrypt the secrets.yml file for:\n\t$file"
         failure_count=$((failure_count + 1))

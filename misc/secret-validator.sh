@@ -21,7 +21,7 @@ touch vault.log && chmod 640 vault.log
 echo "${POPS_ANSIBLE_PASSWORD}" > $TRAVIS_BUILD_DIR/vault.log
 
 docker run --entrypoint /bin/bash -it \
-    -e ANSIBLE_VAULT_PASSWORD_FILE=${VAULT_PWD_FILE_PATH} \
+    # -e ANSIBLE_VAULT_PASSWORD_FILE=${VAULT_PWD_FILE_PATH} \
     -v ${TRAVIS_BUILD_DIR}/vault.log:${VAULT_PWD_FILE_PATH} \
     -v ${TRAVIS_BUILD_DIR}/provisioning/k8s/:/home/secrets \
     -v /tmp/build/misc/vault-secrets.sh:/home/secrets/vault-secrets.sh \
