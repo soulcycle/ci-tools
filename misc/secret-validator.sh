@@ -22,8 +22,7 @@ echo "${POPS_ANSIBLE_PASSWORD}" > $TRAVIS_BUILD_DIR/vault.log
 docker run --entrypoint /bin/bash -it \
     -v ${TRAVIS_BUILD_DIR}/vault.log:/home/secrets/vault.log \
     -v ${TRAVIS_BUILD_DIR}/provisioning/k8s/:/home/secrets \
-    -v /tmp/build/misc/vault-secrets.sh:/home/secrets/vault-secrets.sh \
-        gcr.io/podium-production/ansible-vault:latest /home/secrets/vault-secrets.sh
+        gcr.io/podium-production/ansible-vault:latest /usr/src/app/vault-secrets.sh
 
 if [ $? != 0 ]; then
     echo "Secret validation process exited with an error."
