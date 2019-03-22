@@ -28,6 +28,7 @@ for file in $secrets; do
     
     echo "File appears to be encrypted. Attempting to decrypt now..."
     # cp $file $file.tmp
+    chmod 640 $file
     ANSIBLE_VAULT_PASSWORD_FILE=/home/secrets/vault.log ansible-vault -vvv decrypt $file
     if [ "$?" != "0" ]; then
         echo -e "[FAIL] - Can't decrypt the secrets.yml file for:\n\t$file"
@@ -36,7 +37,7 @@ for file in $secrets; do
         echo -e "[OK] - Successfully decrypted $file"
     fi
     # Clean up temporary file
-    rm $file.tmp
+    #rm $file.tmp
 done
 
 if [ ${failure_count} -gt 0 ]; then
