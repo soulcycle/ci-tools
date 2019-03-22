@@ -27,8 +27,8 @@ for file in $secrets; do
     fi
     
     echo "File appears to be encrypted. Attempting to decrypt now..."
-    chmod 0600 $file
-    cat $file | ansible-vault -vvvvv decrypt 1>/dev/null
+    # chmod 0600 $file
+    ansible-vault -vvvvv decrypt $file
     if [ "$?" != "0" ]; then
         echo -e "[FAIL] - Can't decrypt the secrets.yml file for:\n\t$file"
         failure_count=$((failure_count + 1))
