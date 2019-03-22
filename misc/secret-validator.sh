@@ -15,8 +15,7 @@ echo "Pulling latest ansible-vault utility container image... "
 docker pull gcr.io/podium-production/ansible-vault:latest
 
 echo "Running Pops secret validation ... "
-echo "Vault: ${POPS_ANSIBLE_PASSWORD}"
-echo "${POPS_ANSIBLE_PASSWORD}" | base64 -D > $TRAVIS_BUILD_DIR/vault.log
+echo "${POPS_ANSIBLE_PASSWORD}" | base64 -d > $TRAVIS_BUILD_DIR/vault.log
 
 docker run --entrypoint /bin/bash -it \
     -v ${TRAVIS_BUILD_DIR}/vault.log:/tmp/vault.log \
