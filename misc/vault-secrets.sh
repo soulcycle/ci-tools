@@ -12,10 +12,6 @@ cat <<'eom'
 eom
 cd /home/secrets
 
-# Just for debugging
-apt get update
-apt install ansible -y
-
 echo "Finding secret files..."
 # echo "Using vault password file: $ANSIBLE_VAULT_PASSWORD_FILE"
 
@@ -32,8 +28,7 @@ for file in $secrets; do
     
     echo "File appears to be encrypted. Attempting to decrypt now..."
     # cp $file $file.tmp
-    stat -c '%A %a %n' $file
-    ANSIBLE_VAULT_PASSWORD_FILE=/home/secrets/vault.log ansible-vault -vvv decrypt $file
+    cat $file | ANSIBLE_VAULT_PASSWORD_FILE=/home/secrets/vault.log ansible-vault decrypt  1>/dev/null
     if [ "$?" != "0" ]; then
         echo -e "[FAIL] - Can't decrypt the secrets.yml file for:\n\t$file"
         failure_count=$((failure_count + 1))
