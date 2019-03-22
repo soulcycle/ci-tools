@@ -7,7 +7,7 @@
 
 # Temporarily provision vault key file
 echo "Building temporary secrets file."
-touch vault.log && chmod a-x vault.log
+touch vault.log && chmod 600 vault.log
 echo "${POPS_ANSIBLE_PASSWORD}" > $TRAVIS_BUILD_DIR/vault.log
 
 # Pull down the latest image

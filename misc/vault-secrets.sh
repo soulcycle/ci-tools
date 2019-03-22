@@ -10,8 +10,9 @@ cat <<'eom'
 -------------------------------------------------
 
 eom
-cd /home/secrets
 
+# CD to where the secrets are expected
+cd /home/secrets
 echo "Finding secret files..."
 
 secrets=$(find . -type f -regex '.*/configs/.*.secrets.yml')
