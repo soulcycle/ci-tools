@@ -12,6 +12,10 @@ cat <<'eom'
 eom
 cd /home/secrets
 
+# Just for debugging
+apt get update
+apt install ansible -y
+
 echo "Finding secret files..."
 # echo "Using vault password file: $ANSIBLE_VAULT_PASSWORD_FILE"
 
