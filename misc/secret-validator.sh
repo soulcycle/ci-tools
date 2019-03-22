@@ -4,8 +4,6 @@
 # NOTE: Assumes the following env vars are defined within the running environment
 #   - POPS_ANSIBLE_PASSWORD - Shared secret that's used to decrypt the contents of secrets.yml files
 #   - TRAVIS_BUILD_DIR - Base working directory for the build environment
-#   - VAULT_PWD_FILE_PATH - Path to the Vault password file that's mounted into the ansible-vault 
-#                           utility container
 
 # Temporarily provision vault key file
 echo "Building temporary secrets file."
@@ -20,7 +18,7 @@ echo "Running Pops secret validation ... "
 echo "${POPS_ANSIBLE_PASSWORD}" > $TRAVIS_BUILD_DIR/vault.log
 
 docker run --entrypoint /bin/bash -it \
-    -v ${TRAVIS_BUILD_DIR}/vault.log:/home/secrets/vault.log \
+    -v ${TRAVIS_BUILD_DIR}/vault.log:/tmp/vault.log \
     -v ${TRAVIS_BUILD_DIR}/provisioning/k8s/:/home/secrets \
         gcr.io/podium-production/ansible-vault:latest /usr/src/app/vault-secrets.sh
 
