@@ -13,6 +13,9 @@ def log_inspect(f_path):
 def log_error(msg):
     print('[ERROR] - {}'.format(msg))
 
+def log_warn(msg):
+    print('[WARN] - {}'.format(msg))
+
 def log_info(msg, label=True):
     if label is False:
         print('{}'.format(msg))
@@ -47,8 +50,8 @@ if __name__ == "__main__":
 
     secrets=contents.get('secrets')
     if secrets is None:
-        log_error('Document was parsable as YAML, however there was no \'secrets\' key!')
-        sys.exit(1)
+        log_warn('Document was parsable as YAML, however there was no \'secrets\' key.')
+        sys.exit(0)
 
     log_info('[INFO] - Found "secrets" key. Looking even better!')
 
