@@ -16,23 +16,32 @@ cd /home/secrets
 echo "Finding secret files..."
 
 secrets=$(find . -type f -regex '.*/configs/.*.secrets.yml')
-failure_count=0
+
 for file in $secrets; do
     echo "[PENDING] - Testing decryption on $file"
     
     # Is the file NOT encrypted?
     if [[ $(cat $file | grep "ANSIBLE" | wc -l) -ne "1" ]]; then
         echo "[FATAL] - File ${file} isn't encrypted!!"
-        failure_count=$((failure_count + 1))
+        exit 1
     fi
     
     echo "File appears to be encrypted. Attempting to decrypt now..."
-    cat $file | ansible-vault decrypt 1> /dev/null
-    if [ "$?" != "0" ]; then
+    secret_contents=$(cat $file | ansible-vault decrypt)
+    EC=$?
+
+    if [ "$EC" != "0" ]; then
         echo -e "[FAIL] - Can't decrypt the secrets.yml file for:\n\t$file"
-        failure_count=$((failure_count + 1))
+        exit 1
     else
-        echo -e "[OK] - Successfully decrypted $file"
+        echo -e "[PASS] - Successfully decrypted $file"
+    fi
+
+    # Pass the decrypted vault through stdin to a YAML inspector
+    echo -n "${secret_contents}" | python3.6 /usr/src/app/validate-k8s-secrets-yml.py "$file"
+    if [ "$?" != "0"  ]; then
+        echo -e "[FAIL] - Yaml validation errors detected in: \n\t$file"
+        exit 1
     fi
 done
 
