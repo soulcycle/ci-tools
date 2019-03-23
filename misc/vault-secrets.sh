@@ -45,9 +45,4 @@ for file in $secrets; do
     fi
 done
 
-if [ ${failure_count} -gt 0 ]; then
-    echo "[FATAL] - One or more secrets.yml files weren't encrypted correctly!"
-    exit 1
-fi
-
 exit 0
