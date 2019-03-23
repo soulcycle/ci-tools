@@ -6,9 +6,9 @@ yml_content='\n'.join(sys.stdin.readlines())
 file_path=sys.argv[1]
 
 def log_inspect(f_path):
-    print('-------------------------------------------------------------------------------')
+    print('----------------------------------------------------------------')
     print('Inspecting the secrets.yml file: {}'.format(f_path))
-    print('-------------------------------------------------------------------------------')
+    print('----------------------------------------------------------------')
 
 def log_error(msg):
     print('[ERROR] - {}'.format(msg))
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     try:
         contents=yaml.safe_load(yml_content)
     except yaml.YAMLError as exc:
-        log_error('Invalid syntax detected in secrets file: {} \n\n{}'.format( file_path, exc))
+        log_error('Invalid syntax detected in secrets file: {} \n\n{}'.format(file_path, exc))
         sys.exit(1)
 
     log_info('Successfully loaded yaml file into an object. Not bad...')
