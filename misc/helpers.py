@@ -69,6 +69,9 @@ class ParsingHelpers:
 
         return inspectable
 
+    '''
+    WIP - Will be used to execute a pops command
+    '''
     @staticmethod
     def run_pops_command(cmd, label):
         try:
@@ -82,13 +85,10 @@ class ParsingHelpers:
                 )
             )
             return None
-    
-    # '''
-    # For a given file, generate the declarations for it, 
-    # '''
-    # @staticmethod
-    # def generate_pops_declarations(manifest_yml_doc):
 
+'''
+A class to abstract away the actual location of the secrets.yml and values.yml entries
+'''
 class FileHelpers:
 
     def __init__(self):

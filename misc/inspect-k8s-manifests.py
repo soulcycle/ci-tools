@@ -18,8 +18,8 @@ if __name__ == "__main__":
     
     # Decrypt them and return the results
     secrets_report = sv.get_decrypted_secrets(deploy_info.secret_files)
-
-    # Add further validation commands here...
+    
+    # Prepare the report
     l.log_info('\n\nEvaluating results...', label=False)
     failure_count=0
     for result in secrets_report:
@@ -45,6 +45,11 @@ if __name__ == "__main__":
                 result.get('errors', '')
             ), label=False)
             failure_count = failure_count + 1
+
+        # Print out values yml report
+        values_yml_rpt = result.get('values_key_report', '')
+        if len(values_yml_rpt) > 0:
+            l.log_info('\n{}'.format(values_yml_rpt), label=False)
 
         # Print out data key report
         data_key_rpt = result.get('data_key_report', '') 
