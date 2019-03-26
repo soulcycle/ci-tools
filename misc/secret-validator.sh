@@ -18,11 +18,13 @@ echo "Running Pops secret validation ... "
 decrypted=$(echo "${POPS_ANSIBLE_PASSWORD}" | base64 -d)
 echo $decrypted > $TRAVIS_BUILD_DIR/vault.log
 
-docker run --entrypoint /bin/bash -it \
+docker run \
     -v ${TRAVIS_BUILD_DIR}/vault.log:/tmp/vault.log \
     -v ${TRAVIS_BUILD_DIR}/provisioning/k8s/:/home/secrets \
-    -v /tmp/build/misc/vault-secrets.sh:/usr/src/app/vault-secrets.sh \
-        gcr.io/podium-production/ansible-vault:latest /usr/src/app/vault-secrets.sh
+    -v /tmp/build/misc/helpers.py:/usr/src/app/helpers.py \
+    -v /tmp/build/misc/secretvalidator.py:/usr/src/app/secretvalidator.py \
+    -v /tmp/build/misc/inspect-k8s-manifests.py:/usr/src/app/inspect-k8s-manifests.py \
+        gcr.io/podium-production/ansible-vault:latest
 
 if [ $? != 0 ]; then
     echo "Secret validation process exited with an error."
