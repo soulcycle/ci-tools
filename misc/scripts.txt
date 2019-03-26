@@ -1,2 +1,8 @@
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/secret-validator.sh
-https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/vault-secrets.sh
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/helpers.py
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/Dockerfile
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/requirements.txt
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/inspect-k8s-manifests.py
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/.ansible.cfg
+https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/secretvalidator.py
+
+misc/inspect-k8s-manifests.py
