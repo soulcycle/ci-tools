@@ -88,20 +88,25 @@ class SecretValidators:
                 else:
                     print('[PASS] - Successfully decrypted {}!'.format(yml_file_path))
                     # Load YAML into an object
-                    yaml_obj = SecretValidators.load_decrypted_secret_yml(results['output'], yml_file_path).get('yml_obj')
-                    # Extract 'secrets' from yaml object
-                    secrets_key = SecretValidators.get_secrets_key_value(yaml_obj)
-                    if secrets_key.get('data') is not None:
-                        # Append 'secret' to yaml_obj we're building
-                        yaml_obj['secrets_key']=secrets_key['data']
-                        # Pull out data keys in object since they could be of interest
-                        # e.g. example-db-creds.username
-                        secret_data_keys = SecretValidators.analyze_secrets(yaml_obj['secrets_key'])
-                        data_key_report = data_key_report + secret_data_keys.get('report')
+                    loaded_yml_result = SecretValidators.load_decrypted_secret_yml(results['output'], yml_file_path)
+                    yaml_obj = loaded_yml_result.get('yml_obj','')
+                    yml_load_err = loaded_yml_result.get('error','')
+
+                    # Only process secrets if we loaded the object properly, of course.
+                    if yml_load_err is '':
+                        # Extract 'secrets' from yaml object
+                        secrets_key = SecretValidators.get_secrets_key_value(yaml_obj)
+                        if secrets_key.get('data') is not None:
+                            # Append 'secret' to yaml_obj we're building
+                            yaml_obj['secrets_key']=secrets_key['data']
+                            # Pull out data keys in object since they could be of interest
+                            # e.g. example-db-creds.username
+                            secret_data_keys = SecretValidators.analyze_secrets(yaml_obj['secrets_key'])
+                            data_key_report = data_key_report + secret_data_keys.get('report')
                         
                     # Track errors and warnings
                     if yaml_obj is not None:
-                        error = error + yaml_obj.get('error', '')
+                        error = error + yml_load_err
                     if secrets_key is not None:
                         error = error + secrets_key.get('error', '')
                     if len(secrets_key.get('warning','')) > 0:
@@ -167,7 +172,7 @@ class SecretValidators:
             r['yml_obj'] = obj
         except yaml.YAMLError as exc:
             l.log_error('Invalid syntax detected in secrets file: {} \n\n{}'.format(secrets_file, exc))
-            r['error'] = exc.message
+            r['error'] = str(exc)
 
         return r
 
