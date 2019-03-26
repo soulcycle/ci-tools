@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.12.0](https://github.com/soulcycle/ci-tools/tree/2.12.0) (03-26-2019)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.11.0...2.12.0)
+
+**Merged pull requests:**
+
+- \[PE-8932\] - \[CI Tool\] - Pops Secret Validator [\#32](https://github.com/soulcycle/ci-tools/pull/32) ([BastianM3](https://github.com/BastianM3))
+- Update Edge to Enable Pops Secret Validator Testing [\#31](https://github.com/soulcycle/ci-tools/pull/31) ([BastianM3](https://github.com/BastianM3))
+
 ## [2.11.0](https://github.com/soulcycle/ci-tools/tree/2.11.0) (01-30-2019)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.10.0...2.11.0)
 
