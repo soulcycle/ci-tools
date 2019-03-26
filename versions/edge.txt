@@ -1,1 +1,1 @@
-pops-secret-validator
+2.12.0
