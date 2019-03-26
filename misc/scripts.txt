@@ -4,5 +4,3 @@ https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/requiremen
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/inspect-k8s-manifests.py
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/.ansible.cfg
 https://raw.githubusercontent.com/soulcycle/ci-tools/{%version%}/misc/secretvalidator.py
-
-misc/inspect-k8s-manifests.py
