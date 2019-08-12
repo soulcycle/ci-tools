@@ -31,12 +31,17 @@ main() {
 
   echo_green "Pushed commit hash image for a semver tag to ${DOCKER_BASE}."
 
+  # Parse out JIRA Tickets to send to Harness
+  PREVIOUS_TAG=$(git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`)
+  PATTERN="PE-[[:digit:]]*"
+  JIRA_TICKETS=[$(git diff ${PREVIOUS_TAG} -- CHANGELOG.md | grep -o ${PATTERN})]
+
   if [ -n "$HARNESS_WEBHOOK_SEMVER" ]; then
     echo_yellow "Letting Harness.io know a semver build happened..."
 
     curl -X POST -H 'Content-Type: application/json' \
     --url "${HARNESS_WEBHOOK_SEMVER}" \
-    -d "{\"application\":\"${HARNESS_APPLICATION_ID}\",\"artifacts\":[{\"service\":\"${HARNESS_SERVICE}\",\"buildNumber\":\"${TRAVIS_TAG}\"}]}"
+    -d "{\"application\":\"${HARNESS_APPLICATION_ID}\",\"artifacts\":[{\"service\":\"${HARNESS_SERVICE}\",\"buildNumber\":\"${TRAVIS_TAG}\",\"jiraTickets\":\"${JIRA_TICKETS}\"}]}"
 
     echo_green "\n Harness.io informed of semver build."
   fi
