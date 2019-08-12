@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.13.0](https://github.com/soulcycle/ci-tools/tree/2.13.0) (08-12-2019)
+[Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.12.0...2.13.0)
+
+**Merged pull requests:**
+
+- PE-10193 Add Jira Ticket Numbers to Harness Webhook [\#34](https://github.com/soulcycle/ci-tools/pull/34) ([donofriov](https://github.com/donofriov))
+- \[Ci-Tools\] - Rollout 2.12.0 to All Release Channels [\#33](https://github.com/soulcycle/ci-tools/pull/33) ([BastianM3](https://github.com/BastianM3))
+
 ## [2.12.0](https://github.com/soulcycle/ci-tools/tree/2.12.0) (03-26-2019)
 [Full Changelog](https://github.com/soulcycle/ci-tools/compare/2.11.0...2.12.0)
 
